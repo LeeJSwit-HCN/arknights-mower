@@ -15,7 +15,8 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 | 继承自上游的文件 | MIT | 见 `LICENSE`，版权归原作者 |
 | 本 fork **新增**的文件（相对 `f7b1a70`） | PolyForm Noncommercial 1.0.0 | 见 `LICENSE-CLOSURE` |
 | 本 fork 对上游文件的**修改** | 原文件许可（MIT） | 修改部分不改变原文件许可 |
-| 游戏《明日方舟》相关素材 | 鹰角网络版权所有 | 仅用于学习与研究 |
+| `README.md` / `README.en.md` 当前版本 | PolyForm Noncommercial 1.0.0 | closure 独立重写文档；上游 f7b1a70 原始 README 仍按 MIT |
+| 游戏《明日方舟®》相关素材 | 鹰角网络®版权所有 | 仅用于学习与研究 |
 
 新增文件清单可用以下命令核对（只会列出新增，不含修改）：
 
@@ -31,11 +32,8 @@ git diff --diff-filter=A --name-only f7b1a70aeb512a7bf2f3ab28d2f1e79625163054
 - closure 新增的代码、文档与模板：PolyForm Noncommercial 1.0.0；
 - 新增文件应带 `SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0`；漏带标识的新增文件仍按新增文件处理，不因缺头自动转为 MIT；
 - 明确豁免：`LICENSE-CLOSURE` 是许可正文，`CLOSURE-VERSION` 是纯版本号数据；两者不属于受许可的代码或文档；
+- `README.md` / `README.en.md` 的当前版本是 closure 独立重写文档，适用 PolyForm；上游 `f7b1a70` 的原始 README 仍按 MIT，旧版本 README 不因本次重写改变许可；
 - 纯数据文件无法携带头部，按本文件“数据文件”一节处理。
-
-本版本修改的上游文件（适用 MIT）：
-
-- `README.md`（fork 说明与分层文档入口）
 
 > 代码发行时，修改清单还会包含 `server.py`、`ui/package.json`、`webui_zip.spec`、
 > `webview_ui.py` 等文件；本文件随首次代码发行同步更新。
@@ -48,9 +46,9 @@ PolyForm Noncommercial 1.0.0 允许任何**非商业目的**，包括个人学�
 
 本许可不限制 MIT 上游文件的商业使用；MIT 部分仍按 MIT 处理。
 
-## 发布二进制
+## 如发布二进制
 
-Release zip 是 **MIT + PolyForm Noncommercial 1.0.0 混合许可分发**：
+如未来发布 Release zip，则按 **MIT + PolyForm Noncommercial 1.0.0 混合许可分发**：
 
 - 继承自上游的文件及其编译/打包形态：MIT；
 - closure 新增文件及其编译/打包形态：PolyForm Noncommercial 1.0.0。
