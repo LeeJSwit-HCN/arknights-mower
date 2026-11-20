@@ -3,7 +3,7 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
 # arknights-mower（closure 分支）
 
-个人维护的 [Arknights® Mower](https://github.com/ArkMowers/arknights-mower) fork，基于上游 `alpha`
+个人维护的 [Arknights Mower](https://github.com/ArkMowers/arknights-mower) fork，基于上游 `alpha`
 快照 `f7b1a70`（v4.1.6-alpha.15），只维护 `closure` 分支。非官方版本，不代表上游维护者立场，
 不提供官方支持。
 
@@ -75,6 +75,6 @@ closure 新增文档不提供面向用户的安装、配置或真实游戏接入
 
 - 本项目为个人学习研究项目，非商业；不提供、也不接受商业许可申请；不参与、不授权任何代练、代肝、托管、付费服务或付费合作。
 - 开发者不提供任何付费服务，权利人提出异议时停止分发。
-- 游戏《明日方舟®》及其素材版权归鹰角网络所有；使用本工具可能违反游戏服务条款，
+- 游戏《明日方舟®》（Arknights®）及其素材版权归鹰角网络所有；使用本工具可能违反游戏服务条款，
   账号与数据风险由使用者自行承担。
 - 不保证稳定性与兼容性，不对使用后果承担责任。

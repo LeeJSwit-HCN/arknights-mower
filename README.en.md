@@ -3,7 +3,7 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
 # arknights-mower (closure branch)
 
-A personally maintained fork of [Arknights® Mower](https://github.com/ArkMowers/arknights-mower), based on the upstream `alpha` snapshot `f7b1a70` (v4.1.6-alpha.15). Only the `closure` branch is maintained. This is an unofficial version; it does not represent the upstream maintainers and does not provide official support.
+A personally maintained fork of [Arknights Mower](https://github.com/ArkMowers/arknights-mower), based on the upstream `alpha` snapshot `f7b1a70` (v4.1.6-alpha.15). This project is for research on the game *Arknights®*. Only the `closure` branch is maintained. This is an unofficial version; it does not represent the upstream maintainers and does not provide official support.
 
 > This is a docs-only baseline commit: documentation and licenses only. L1/L2 code and runnable packages will be provided with the closure v0.1.0 code release.
 >

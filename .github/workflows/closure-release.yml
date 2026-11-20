@@ -1,0 +1,130 @@
+name: closure release (windows)
+
+# 只服务 closure 分支：tag 前缀 closure-v 避开上游 vX.Y.Z 流水线。
+# 需要一个可用的 node（setup-node 提供），PyInstaller spec 会把 node.exe 打进包内。
+
+on:
+  push:
+    tags: ["closure-v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "版本号，例如 0.1.0"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: closure-release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Resolve version
+        id: ver
+        shell: pwsh
+        run: |
+          $v = "${{ inputs.version }}"
+          if ([string]::IsNullOrWhiteSpace($v)) {
+            $v = "${{ github.ref_name }}" -replace '^closure-v', ''
+          }
+          if ($v -match '^\d+\.\d+$') { $v = "$v.0" }
+          "version=$v" | Out-File -Append -FilePath $env:GITHUB_OUTPUT -Encoding utf8
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install "pyinstaller==6.22.2"
+
+      - name: Build frontend
+        shell: pwsh
+        run: |
+          cd ui
+          npm ci
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm run build
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Build sim bridge bundle
+        run: node scripts/build_sim_bridge.mjs
+
+      - name: Inject version
+        run: python scripts/inject_version.py "${{ steps.ver.outputs.version }}" --system windows --arch x64
+
+      - name: Package with PyInstaller
+        run: python -m PyInstaller webui_zip.spec --noconfirm
+
+      - name: Zip
+        shell: pwsh
+        run: |
+          $v = "${{ steps.ver.outputs.version }}"
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $src = (Resolve-Path 'dist/mower').Path
+          $licenseFiles = @('LICENSE', 'LICENSE-CLOSURE', 'NOTICE', 'USER-NOTICE.md')
+          foreach ($f in $licenseFiles) {
+            if (-not (Test-Path $f)) { throw "missing license file: $f" }
+            Copy-Item $f -Destination $src -Force
+          }
+          $zip = Join-Path (Resolve-Path 'dist').Path "arknights-mower_v${v}_windows_x64.zip"
+          [System.IO.Compression.ZipFile]::CreateFromDirectory(
+            $src, $zip,
+            [System.IO.Compression.CompressionLevel]::Optimal,
+            $true
+          )
+          if (-not (Test-Path $zip)) { throw "zip not created: $zip" }
+          $z = [System.IO.Compression.ZipFile]::OpenRead($zip)
+          try {
+            $names = $z.Entries.FullName | ForEach-Object { $_.Replace('\', '/') }
+            foreach ($f in $licenseFiles) {
+              if (-not ($names -contains "mower/$f")) { throw "zip missing mower/$f" }
+            }
+          } finally { $z.Dispose() }
+
+      - name: Checksums
+        shell: pwsh
+        run: |
+          $zip = "dist/arknights-mower_v${{ steps.ver.outputs.version }}_windows_x64.zip"
+          if (-not (Test-Path $zip)) { throw "zip not found: $zip" }
+          $hash = (Get-FileHash $zip -Algorithm SHA256).Hash.ToLower()
+          "$hash  $(Split-Path -Leaf $zip)" | Set-Content dist/SHA256SUMS.txt -Encoding ascii
+
+      - name: Upload build artifact (manual runs)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: closure-windows-${{ steps.ver.outputs.version }}
+          path: |
+            dist/arknights-mower_v${{ steps.ver.outputs.version }}_windows_x64.zip
+            dist/SHA256SUMS.txt
+            USER-NOTICE.md
+
+      - name: Publish release (tag pushes)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: closure v${{ steps.ver.outputs.version }} (based on 4.1.6-alpha.15)
+          prerelease: true
+          generate_release_notes: true
+          files: |
+            dist/arknights-mower_v${{ steps.ver.outputs.version }}_windows_x64.zip
+            dist/SHA256SUMS.txt
+            LICENSE
+            LICENSE-CLOSURE
+            NOTICE
+            USER-NOTICE.md

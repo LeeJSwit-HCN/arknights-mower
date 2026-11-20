@@ -21,7 +21,7 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
 - **本项目**：`closure` 分支及其发布物（源码、文档、脚本与二进制）。L3 正在开发、尚未推送；0.3.0 前不提供 plan 生成或导出。
 - **上游**：[ArkMowers/arknights-mower](https://github.com/ArkMowers/arknights-mower)（MIT）；本项目基于快照 `f7b1a70`（v4.1.6-alpha.15）派生，不自动跟随上游。
-- **游戏**：《明日方舟®》，权利归鹰角网络（Hypergryph®）、悠星（Yostar）等权利人。
+- **游戏**：《明日方舟®》（Arknights®），权利归鹰角网络（Hypergryph®）、悠星（Yostar）等权利人。
 - **您**：使用本项目的自然人。
 
 本项目是个人学习与研究项目，非官方、非商业，无官方支持、SLA 或稳定性、兼容性保证。当前版本不通过本项目获取收入。
@@ -146,7 +146,7 @@ AI 助手是可选功能。启用后，您输入的提示、必要的排班/干�
 
 Courtesy summary only; the Chinese text is authoritative.
 
-- Unofficial personal fork of Arknights® Mower (upstream `f7b1a70` / v4.1.6-alpha.15), closure v0.1.0 (planned tag `closure-v0.1.0`); no affiliation with Hypergryph, Yostar, ArkMowers, or their maintainers.
+- Unofficial personal fork of Arknights Mower (upstream `f7b1a70` / v4.1.6-alpha.15), closure v0.1.0 (planned tag `closure-v0.1.0`); no affiliation with Hypergryph, Yostar, ArkMowers, or their maintainers.
 - Upstream files and modifications stay MIT; closure-added files use PolyForm Noncommercial 1.0.0 per SPDX headers. The license permits noncommercial purposes only. No commercial license is offered or accepted; commercial use is not permitted. PolyForm is source-available, not an OSI-approved open source license.
 - The project is a simulation, testing, and scheduling research project built around arknights-mower. It does not provide client modification, memory reading, network interception, or real-game integration tutorials. If you use the project or its output in a real game environment, you are responsible for confirming and complying with the game's terms; account, device, and data risks are yours. Provided "AS IS" without warranties; liability limited as far as law allows.
 - No plans, operator data, logs, accounts, passwords, phone numbers, or device IDs are uploaded to developer servers, and IPs are not actively collected or stored; GitHub and third-party services see your IP when contacted. The optional AI assistant sends prompts, necessary context, and your API key to your chosen model service under that provider's terms and privacy policy. When you explicitly request feedback submission, the assistant sends the content you confirm and necessary logs/screenshots to the developer group's email via `submit_issue`; it does not use a developer-operated server. Skland credentials (token/credential) stay in plaintext local config (e.g., `config/conf.yml`); never share them.
