@@ -1,100 +1,74 @@
-# arknights-mower
+# arknights-mower（closure 分支）
 
-Mower 是为长期运行设计的开源明日方舟脚本，支持基建动态排班、跑单、日常任务、养成材料准备和自动专精，并可调用 MAA 执行作战与大型任务。
+个人维护的 [Arknights Mower](https://github.com/ArkMowers/arknights-mower) fork，基于上游 `alpha`
+快照 `f7b1a70`（v4.1.6-alpha.15），只维护 `closure` 分支。非官方版本，不代表上游维护者立场，
+不提供官方支持。
 
-## 源码部署
+> 本次为 docs-only 基线提交：仅含文档与许可证。L1/L2 代码与可运行包随 closure v0.1.0 代码发行提供。
 
-macOS 和 Linux 虽有独立包，仍建议优先使用源码部署。以下说明适用于 Windows、Linux 和 macOS。
+## 与上游的关系
 
-准备 Git、Python 3.12、Node.js 22.18 及以上的 22.x 或 24.11 及以上的 24.x，推荐使用 Node.js 24 LTS。Windows 需要 WebView2 运行时；Linux 桌面启动需要图形环境和 GTK/WebKit2。
+- 上游 `alpha` 的改动经人工审阅后再合并，不自动跟随；当前基线落后上游若干提交。
+- Closure 0.1.0 代码发行时禁用继承自上游的自动更新器，避免被上游 Release/Nightly 或源码分支覆盖；后续提供 Closure 自己的更新器。
+- 不向上游提交 PR；继承自上游的文件及对它们的修改保持 MIT。
 
-### 获取源码与构建前端
+## 项目定位
 
-```bash
-git clone --branch alpha https://github.com/ArkMowers/arknights-mower.git
-cd arknights-mower
-cd ui
-npm ci
-npm run build
-cd ..
-```
+本项目是个人学习研究项目，研究开源项目 arknights-mower 在虚拟设备/仿真环境下的自动化测试与排班算法。
 
-以下 Python 命令均在仓库根目录执行，直接使用虚拟环境中的解释器，无须激活环境。
+- 不修改游戏客户端、不读取游戏内存、不拦截网络通信、不修改游戏文件；
+- 这些技术特征只是实现说明，不构成鹰角网络的授权；
+- 不授权、不提供将本项目接入真实游戏环境的教程或支持；
+- 禁止将本项目用于违反游戏服务条款、商业代练、托管或其他商业用途；
+- 与鹰角网络、悠星及 ArkMowers 无隶属关系。
 
-### Windows
+## 使用前须知
 
-在 PowerShell 中执行：
+- 本项目是非官方、个人维护的 fork，不代表上游维护者，也不代表鹰角网络。
+- 继承自上游的文件及对它们的修改为 MIT；本 fork 新增的文件为 PolyForm Noncommercial 1.0.0；**不提供商业许可，也不接受商业许可申请**。
+- 自动化操作可能违反游戏服务条款并导致账号处罚；账号、设备与数据风险由使用者自行承担。
+- 完整条款、数据与隐私说明、确认流程见 [`USER-NOTICE.md`](USER-NOTICE.md)。
 
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe webview_ui.py
-```
+## 内容范围
 
-### Linux
+| 层 | 位置 | 说明 |
+|---|---|---|
+| L1 基建仿真层 | `ui/src/riic/riic-sim/` | TypeScript 物理引擎与 v2 数值模型；HTTP 桥在 `bridge/` |
+| L2 mower 无头执行层 | `sim_bridge/`、`sim_api_bridge.py` | 虚拟时钟驱动 mower 业务逻辑；`/sim/*` 由 `server.py` 注册 |
+| L3 排班优化层 | 待发布 | 自动排班搜索，开发中 |
 
-以下以 Ubuntu 24.04 桌面环境为例，安装系统窗口依赖，再创建能读取系统 PyGObject 的环境：
+## 架构说明
 
-```bash
-sudo apt update
-sudo apt install python3.12-venv python3-tk python3-gi \
-    gir1.2-gtk-3.0 gir1.2-webkit2-4.1 gir1.2-soup-3.0 \
-    libzbar0 libgl1 libglib2.0-0 adb
-python3.12 -m venv --system-site-packages .venv
-./.venv/bin/python -m pip install -r requirements.in
-./.venv/bin/python webview_ui.py
-```
+closure 分支的分层技术文档从 [`architecture/README.md`](architecture/README.md) 开始：
 
-其他发行版需安装对应依赖，并确保 PyGObject 与环境中的 Python 版本一致。窗口及系统库说明见[平台依赖](doc/release-platforms.md#linux-独立包的窗口后端与宿主依赖)；无桌面的服务器可参考 [Docker 部署](docs/cookbook/docker-deploy.md)。
+- [L1 仿真层](architecture/l1-simulation.md)：确定性基建世界；用法、快速开始、可靠性论证与适用域；
+- [L2 执行层](architecture/l2-execution.md)：无设备跑 mower 业务；快速开始、回放差分、业务回归与 CI 三道门；
+- [L3 目标页](architecture/l3-target.md)：排班优化层的目标与边界（仍在开发中，尚未推送）。
 
-### macOS
+L2 文档 §7.6 还说明了 mower-sim：面向 mower 业务核心开发者的命令行回放工作台。首版只提供命令行回放工具，mower-sim 前端与完整工作台属于后续版本。
 
-安装 Python、Tk、二维码识别依赖，并准备程序默认使用的 ADB：
+文档中的经验数字来自开发者本地标定，测试与验收数据不随仓库发布。
 
-```bash
-brew install python@3.12 python-tk@3.12 zbar
-python3.12 -m venv .venv
-./.venv/bin/python -m pip install -r requirements.in
-./.venv/bin/python scripts/prepare_macos_adb.py
-./.venv/bin/python webview_ui.py
-```
+## 开发说明
 
-ADB 准备脚本下载并校验官方 Platform Tools。已有对应离线 ZIP 时，可通过脚本的 `--archive` 参数指定。Intel Mac 使用源码部署；后续官方发行不再构建 macOS x64 独立包。
+closure 新增文档不提供面向用户的安装、配置或真实游戏接入教程。继承自上游的文档与入口保持上游原样，不代表 closure 的定位或立场。开发与测试约定见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 
-### 后续启动与首次配置
+## 许可与使用
 
-后续只需在仓库根目录执行对应系统的最后一条启动命令。将 `webview_ui.py` 换成 `manager.py` 可打开多开管理器。
+- 继承自上游的文件及对它们的修改：MIT（`LICENSE`）；本 fork 新增的文件：PolyForm Noncommercial 1.0.0
+  （`LICENSE-CLOSURE`），范围见 `NOTICE`。
+- 新增 closure 文件是否适用 PolyForm，以文件头是否带 `SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0` 为准；漏带标识的新增文件仍按新增文件处理。`LICENSE-CLOSURE` 是许可正文，`CLOSURE-VERSION` 是纯版本号数据，两者不按此规则判定。
+- 允许任何非商业目的（范围见 `LICENSE-CLOSURE`）；**不提供商业许可，也不接受商业许可申请**，代练、代肝、托管、
+  付费接口等商业使用不在授权范围内。
+- PolyForm Noncommercial 1.0.0 没有 Change Date；它不是 OSI 认证的开源许可证，属于 source-available。
+- PolyForm 不限制 MIT 上游文件的商业使用。
+- Release 包为 MIT + PolyForm Noncommercial 1.0.0 混合许可分发：上游部分仍按 MIT，closure 新增部分按 PolyForm；分发时需附带 `LICENSE`、`LICENSE-CLOSURE`、`NOTICE`、`USER-NOTICE.md`。
+- 使用前请阅读 [`USER-NOTICE.md`](USER-NOTICE.md)（使用须知与风险确认书）。
 
-1. 在 **Mower 设置** 中选择设备预设、检测并选定实例，完成连接测试。
-2. 导入或编写排班，核对设施、主班、替班及宿舍容量，点击「验证排班」。
-3. 按需配置日常任务、MAA、养成与专精，启动后观察一轮换班。
-4. 使用 **配置导出与导入** 保存当前实例的配置和持久化业务数据。
+## 免责声明
 
-性能档位通常保留「自动」。「设备性能适配」位于连接设置中，桌面端和 Android 均提供「游戏内性能测试」，从极高开始逐档验证；操作步骤见一条龙的「设备连接与性能适配」。训练位提示技能条件不符时，先在游戏中完成升级或更换干员，再到 **养成规划 → 刷新**，重新验证排班。
-
-完整步骤及排班理论见程序内「一条龙」（[仓库 HTML 原文](ui/Mower入门指北.html)）。首次下载独立包仍从[项目 Releases](https://github.com/ArkMowers/arknights-mower/releases)获取；已有安装使用 **Mower 设置 → 软件更新**。源码部署更新前保留自己的改动，操作与恢复说明见[软件更新](doc/software-update.md)。
-
-打包与其他部署方式：[本地打包](docs/cookbook/packaging.md) · [Docker 部署](docs/cookbook/docker-deploy.md)。
-
-已有源码环境升级 RapidOCR 与 OpenCV 时，参考 [OCR 依赖迁移](docs/cookbook/source-dependency-migration.md)。
-
-## 界面截图
-
-![运行日志](img/log.png)
-![设置](img/settings.png)
-![排班编辑器](img/plan-editor.png)
-![基建报表](img/riic-report.png)
-
-## 建议与反馈
-
-先查阅 [Mower 反馈表](https://docs.qq.com/sheet/DUEJ6UWN5VFVRU0dG?tab=BB08J2)，填写需要相应编辑权限。程序内反馈窗口通过已配置邮箱发送邮件；AI 助手也可在你明确要求后发送反馈，邮件提交不会自动写入腾讯表格。
-
-请提供 Mower 版本、系统与架构、设备或模拟器、复现步骤、期望行为及实际现象，并附发生时间和相关日志。不要公开密码、授权码、访问令牌、API 密钥或完整配置备份。
-
-QQ群：521857729；QQ 频道：ArkMower（频道号：2r118jwue4）。
-
-## 关于 Mower-NG
-
-Mower-NG 项目由前 Mower 项目开发者之一 [EE0000 (@ZhaoZuohong)](https://github.com/ZhaoZuohong) 基于 Mower 项目二次开发，现已独立运作为其个人开发的项目，与 Mower 项目不再有关联。
-
-由于 [EE0000 (@ZhaoZuohong)](https://github.com/ZhaoZuohong) 已经退出 Mower 开发组，其在网络平台上发表的言论仅代表其个人观点，不代表 Mower 项目或 Mower 开发组的立场。我们敬请广大用户理性分析，并谨慎甄别相关信息。
+- 本项目为个人学习研究项目，非商业；不提供、也不接受商业许可申请；不参与、不授权任何代练、代肝、托管、付费服务或付费合作。
+- 开发者不提供任何付费服务，权利人提出异议时停止分发。
+- 游戏《明日方舟》及其素材版权归鹰角网络所有；使用本工具可能违反游戏服务条款，
+  账号与数据风险由使用者自行承担。
+- 不保证稳定性与兼容性，不对使用后果承担责任。

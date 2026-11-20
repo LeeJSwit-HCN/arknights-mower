@@ -1,0 +1,94 @@
+SPDX-FileCopyrightText: 2026 LeeJSwit
+SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+
+# 许可范围说明
+
+本仓库为**混合许可结构**：GitHub 页面显示的 MIT 徽章只反映上游 `LICENSE`；
+本 fork 新增的文件适用 **PolyForm Noncommercial License 1.0.0**（见 `LICENSE-CLOSURE`）。
+
+**用户使用须知**：使用前请阅读 `USER-NOTICE.md`（许可范围、账号风险、数据与隐私说明、确认条款）。
+
+## 文件范围
+
+| 范围 | 许可 | 说明 |
+|---|---|---|
+| 继承自上游的文件 | MIT | 见 `LICENSE`，版权归原作者 |
+| 本 fork **新增**的文件（相对 `f7b1a70`） | PolyForm Noncommercial 1.0.0 | 见 `LICENSE-CLOSURE` |
+| 本 fork 对上游文件的**修改** | 原文件许可（MIT） | 修改部分不改变原文件许可 |
+| 游戏《明日方舟》相关素材 | 鹰角网络版权所有 | 仅用于学习与研究 |
+
+新增文件清单可用以下命令核对（只会列出新增，不含修改）：
+
+```bash
+git diff --diff-filter=A --name-only f7b1a70aeb512a7bf2f3ab28d2f1e79625163054
+```
+
+两者混合分发时，各文件分别适用其自身许可；本仓库不对 MIT 部分附加额外限制。
+
+**判定规则**：
+
+- 继承自上游的文件及对它们的修改：MIT；
+- closure 新增的代码、文档与模板：PolyForm Noncommercial 1.0.0；
+- 新增文件应带 `SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0`；漏带标识的新增文件仍按新增文件处理，不因缺头自动转为 MIT；
+- 明确豁免：`LICENSE-CLOSURE` 是许可正文，`CLOSURE-VERSION` 是纯版本号数据；两者不属于受许可的代码或文档；
+- 纯数据文件无法携带头部，按本文件“数据文件”一节处理。
+
+本版本修改的上游文件（适用 MIT）：
+
+- `README.md`（fork 说明与分层文档入口）
+
+> 代码发行时，修改清单还会包含 `server.py`、`ui/package.json`、`webui_zip.spec`、
+> `webview_ui.py` 等文件；本文件随首次代码发行同步更新。
+
+## 许可允许什么
+
+PolyForm Noncommercial 1.0.0 允许任何**非商业目的**，包括个人学习、研究、实验、测试、私人娱乐和业余项目。
+
+本仓库明确不提供商业许可，也不接受商业许可申请。任何直接或间接的商业使用，包括代练、代肝、托管、付费接口、付费分发、订阅、广告或捐赠变现，均不在授权范围内。
+
+本许可不限制 MIT 上游文件的商业使用；MIT 部分仍按 MIT 处理。
+
+## 发布二进制
+
+Release zip 是 **MIT + PolyForm Noncommercial 1.0.0 混合许可分发**：
+
+- 继承自上游的文件及其编译/打包形态：MIT；
+- closure 新增文件及其编译/打包形态：PolyForm Noncommercial 1.0.0。
+
+两部分分别适用其自身许可；本仓库不将 MIT 部分改授为 PolyForm，也不将 PolyForm 部分改授为 MIT。
+分发时 zip 根目录须同时附带 `LICENSE`、`LICENSE-CLOSURE`、`NOTICE`、`USER-NOTICE.md` 四个文件。
+
+## 数据文件
+
+`ui/src/riic/riic-sim/v2/normalized-skills.json` 中源于游戏的数据内容（文件随首次代码发行提供），其权利归鹰角网络所有；
+本仓库仅就该文件的整理结构、字段选择与编排主张权利，不就游戏数据本身授予任何许可。
+公开 wiki、公开上游数据或公开计算器只说明技术来源，不构成鹰角网络对游戏数据、游戏素材或游戏服务的授权；游戏数据与素材权利归鹰角网络。
+`sim_bridge/compat_baseline.json` 为本项目自行仿真产出的基线数据（随首次代码发行提供；未经独立验证）。
+
+L1 的数值与机制来源及边界见 `architecture/l1-simulation.md` §3.6。
+
+## 版本
+
+本版本为 `closure v0.1.0`（计划 tag `closure-v0.1.0`），新增文件适用 PolyForm Noncommercial 1.0.0。
+
+PolyForm Noncommercial 1.0.0 没有 Change Date，不会自动转为其他许可证。  
+已经以其他许可证发布的旧版本，仍按旧版本发布时的许可处理；本仓库不追溯改变旧版本。
+
+## 版权标识
+
+本 fork 新增的源码和说明文档应以如下形式标注：
+
+```text
+SPDX-FileCopyrightText: 2026 LeeJSwit
+SPDX-FileCopyrightText: 2026 <贡献者>
+SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+```
+
+每位实际贡献者保留自己的版权行，不合并、不覆盖、不替未参与者添加。  
+继承自上游的 MIT 文件保留其原始版权和 MIT 声明，不添加 PolyForm 标识。
+
+## 开发者立场
+
+- 本项目是个人学习与研究项目，非官方、非商业，当前版本不通过本项目获取收入。
+- 开发者不提供、也不授权任何代练、代肝、托管、付费接口等商业服务；不提供、也不接受商业许可申请。
+- 如权利人（鹰角网络）或相关平台提出异议，开发者将停止分发并配合处理。
