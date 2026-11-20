@@ -1,55 +1,102 @@
-# 安全政策 / Security Policy
+SPDX-FileCopyrightText: 2026 LeeJSwit
+SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
-## 中文
+# 安全政策
 
-### 支持的版本
+> 适用：closure 分支的 L1 / L2 / L3 代码与发布物。  
+> English: [SECURITY.en.md](SECURITY.en.md)
 
-本项目仅对**最新正式版**提供安全支持。这里的“正式版”指非预发布版本的正式 Release。公测版（alpha）、开发版以及已被新版取代的旧正式版不单独提供安全修复；请升级到包含修复的最新正式版。每条安全公告会说明已确认的受影响版本和首个修复版本。旧版本不受支持，并不表示它们不受漏洞影响。
+## 1. 支持版本
 
-### 私密报告安全漏洞
+当前只为最新的 `0.1.x` 版本提供安全修复。  
+更早版本、已删除的分支、个人修改版和第三方 fork 不在支持范围内。
 
-如果仓库的 **Security → Advisories** 页面提供 **Report a vulnerability** 入口，请通过该入口提交私密报告。若入口尚未开放，请先联系仓库维护者商定私密沟通方式。请不要在公开 Issue、Discussion、群聊或社交平台发布尚未修复的漏洞细节、利用代码或真实凭据。
+L3 尚未发布；0.3.0 之前的 L3 目标页不包含可运行代码。
 
-报告中请尽量提供：
+## 2. 报告安全漏洞
 
-- 受影响的版本、操作系统和部署方式（源码、独立安装包或 Docker）；
-- 攻击者需要具备的访问条件，以及预期行为与实际行为；
-- 可在测试环境复现的最小步骤、相关代码位置和影响说明；
-- 已脱敏的日志、截图或请求记录。请勿提交真实密码、令牌、个人数据或完整用户配置。
+请使用 GitHub 的私密漏洞报告：
 
-### 处理与披露
+```text
+https://github.com/LeeJSwit-HCN/arknights-mower/security/advisories/new
+```
 
-维护者会核对报告、评估影响范围并协调修复。修复和升级方案明确后，维护者可发布安全公告，并与报告者协调披露时间及署名。是否申请 CVE 取决于漏洞性质和编号机构的审核结果。
+如果该入口不可用，请通过 GitHub 个人主页联系维护者，不要先开公开 Issue。
 
-### 安全边界
+报告中请提供：
 
-本政策适用于本仓库维护的应用代码、Web 界面与接口、自动化能力、配置与凭据处理、更新流程，以及随仓库提供的部署配置。安全问题应说明真实可达的使用场景和信任边界；仅有危险函数或过期依赖的存在，不足以单独证明用户受到影响。
+- 受影响版本或 commit；
+- 复现步骤；
+- 影响范围；
+- 最小必要的日志或截图；
+- 你的联系方式（可选）。
 
-未经授权的客户端不应读取用户数据、调用受保护的自动化能力或取得本地凭据。处理外部输入、下载内容和本地文件时，应限制在预期的权限与路径范围内。
+请勿提交：
 
-## English
+- 森空岛 token、API Key、账号密码；
+- 真实账号标识、UID、手机号；
+- 未脱敏的 `config/conf.yml`、日志、截图；
+- 他人的数据或账号信息。
 
-### Supported versions
+## 3. 什么不是安全漏洞
 
-Security support is provided only for the **latest stable release**. A stable release is a non-prerelease Release. Alpha builds, development builds, and older stable releases do not receive separate security backports; please upgrade to the latest stable release containing the fix. Each security advisory will identify the confirmed affected versions and the first fixed version. An unsupported version may still be affected by a vulnerability.
+以下情况不属于本项目安全漏洞：
 
-### Privately reporting a vulnerability
+- 因使用本项目导致的游戏账号警告、封禁、冻结或数据删除；
+- 游戏服务条款、平台规则或官方执法行为；
+- 用户电脑、手机或模拟器感染木马、病毒、间谍软件；
+- 用户自己把 token、API Key、配置、日志或截图发到公开仓库、Issue、聊天或网盘；
+- 用户本地环境权限配置不当、共享账号、弱密码或设备丢失；
+- 第三方服务（森空岛、MAA、DeepSeek、GitHub 等）的漏洞或数据泄露；
+- 上游 mower 代码的漏洞（请报告给上游项目）；
+- 社会工程、钓鱼、冒充维护者；
+- 用户违反许可证或服务条款后产生的争议；
+- 功能缺失、性能问题、兼容性问题或使用问题。
 
-If **Report a vulnerability** is available under **Security → Advisories** in this repository, use it to submit a private report. Otherwise, contact the maintainers first to arrange a private reporting channel. Do not post details of an unpatched vulnerability, exploit code, or real credentials in a public Issue, Discussion, chat group, or social media post.
+## 4. 已知设计：本地明文凭据
 
-Please include, when possible:
+森空岛 token/credential 以明文保存在本地配置（如 `config/conf.yml`）。这是为了兼容上游 mower 的已知设计，不是本项目新增的漏洞。
 
-- The affected version, operating system, and deployment method (source, standalone package, or Docker);
-- The access an attacker needs, and the expected and observed behavior;
-- Minimal reproduction steps in a test environment, relevant code locations, and the impact;
-- Redacted logs, screenshots, or request records. Do not submit real passwords, tokens, personal data, or complete user configuration files.
+因此：
 
-### Handling and disclosure
+- 凭据安全取决于用户自己的设备、系统和文件权限；
+- 因用户电脑被入侵、配置被分享、日志/截图泄露导致的 token 泄露，由用户自行承担；
+- 本项目不代理森空岛登录、不收集 token、不运营凭据服务器；
+- 如怀疑凭据泄露，请立即更换森空岛密码并重新登录，删除相关配置与日志。
 
-Maintainers will review the report, assess its scope, and coordinate a fix. Once a fix and upgrade path are clear, maintainers may publish a security advisory and coordinate disclosure timing and credit with the reporter. CVE assignment depends on the nature of the vulnerability and review by the relevant numbering authority.
+## 5. 个人维护者的处理预期
 
-### Security boundary
+这是个人业余项目，不是商业产品。
 
-This policy covers application code maintained in this repository, the Web UI and APIs, automation features, configuration and credential handling, update mechanisms, and deployment configuration shipped with the repository. Reports should explain a realistic reachable scenario and the trust boundary crossed. The presence of a dangerous function or outdated dependency alone does not establish user impact.
+- 不提供 24 小时响应、SLA 或固定修复时限；
+- 不提供漏洞赏金；
+- 处理时间可能因工作、生活或其他维护事项延迟；
+- 维护者会尽力确认、修复和协调披露，但不承诺一定修复；
+- 严重问题会优先处理；
+- 维护者可以关闭不构成安全问题的报告，并说明原因。
 
-Unauthorized clients must not be able to read user data, invoke protected automation, or obtain local credentials. External input, downloaded content, and local files must be handled within their intended permissions and path boundaries.
+## 6. 范围
+
+本政策覆盖 closure 新增的 L1 / L2 / L3 代码、脚本、打包配置与相关文档。
+
+以下不属于本政策范围：
+
+- `arknights_mower/` 上游代码；
+- 第三方依赖、MAA、ADB、模拟器、森空岛、模型服务；
+- 用户自己的配置、账号、设备、网络和日志；
+- 游戏客户端、游戏服务器和游戏账号。
+
+## 7. 协调披露
+
+请给维护者合理的确认与修复时间，不要在修复前公开完整利用细节。
+
+维护者会在可行范围内：
+
+- 确认问题；
+- 评估影响；
+- 准备修复；
+- 在发布说明中致谢（如贡献者愿意）；
+- 与报告者协调公开时间。
+
+请以善意方式测试，不要访问他人的账号、数据或设备，不要破坏服务可用性。  
+本政策不是法律意见，也不构成任何法律豁免承诺。

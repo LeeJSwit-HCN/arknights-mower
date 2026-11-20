@@ -13,6 +13,8 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
 - Closure 分支用户许可与风险确认书 1.0：MIT 上游 + PolyForm Noncommercial 1.0.0 新增文件。
 - 用户须知保留简明协议风险提示；不在公开文档中逐条引用协议条款。
+- 新增 README、USER-NOTICE、CONTRIBUTING 英文参考版；`README.en.md` 与 `README.md` 当前版本按 PolyForm 处理。
+- 新增 SECURITY 中英文版本与 Issue 隐私确认模板。
 - CLA 1.1：增加职务发明/职务行为声明、维护者终止权和中华人民共和国法律适用；新增英文参考版。
 - closure 功能级许可门禁：首次进入 closure 功能时确认；拒绝不进入 closure，不影响上游 Mower；门禁随代码发行生效。
 - 基建模拟器：

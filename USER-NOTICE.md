@@ -6,11 +6,12 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 **文档版本**：1.0  
 **文档日期**：2026-11-20  
 **适用版本**：closure v0.1.0（计划 tag `closure-v0.1.0`；上游基线 v4.1.6-alpha.15 / `f7b1a70`）  
-**文档性质**：使用许可说明、风险告知与用户确认；不替代 [LICENSE](LICENSE) / [LICENSE-CLOSURE](LICENSE-CLOSURE)，冲突时以许可条款为准。
+**文档性质**：使用许可说明、风险告知与用户确认；不替代 [LICENSE](LICENSE) / [LICENSE-CLOSURE](LICENSE-CLOSURE)，冲突时以许可条款为准。  
+**English version**：[USER-NOTICE.en.md](USER-NOTICE.en.md)
 
 ## 摘要
 
-本项目是**非官方、个人维护**的 mower fork，与鹰角网络、悠星、ArkMowers 及其维护者无隶属关系。
+本项目是**非官方、个人维护**的 mower fork，与鹰角网络®、悠星、ArkMowers 及其维护者无隶属关系。
 
 上游文件按 **MIT**、closure 新增文件按 **PolyForm Noncommercial 1.0.0** 提供。新增部分仅允许非商业目的，**不提供商业许可，也不接受商业许可申请**。
 
@@ -20,7 +21,7 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
 - **本项目**：`closure` 分支及其发布物（源码、文档、脚本与二进制）。L3 正在开发、尚未推送；0.3.0 前不提供 plan 生成或导出。
 - **上游**：[ArkMowers/arknights-mower](https://github.com/ArkMowers/arknights-mower)（MIT）；本项目基于快照 `f7b1a70`（v4.1.6-alpha.15）派生，不自动跟随上游。
-- **游戏**：《明日方舟》，权利归鹰角网络（Hypergryph）、悠星（Yostar）等权利人。
+- **游戏**：《明日方舟®》，权利归鹰角网络（Hypergryph®）、悠星（Yostar）等权利人。
 - **您**：使用本项目的自然人。
 
 本项目是个人学习与研究项目，非官方、非商业，无官方支持、SLA 或稳定性、兼容性保证。当前版本不通过本项目获取收入。
@@ -32,16 +33,16 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 | 范围 | 许可 | 说明 |
 |---|---|---|
 | 上游文件及其修改 | MIT（[LICENSE](LICENSE)） | 原文件版权归原作者；修改部分归修改者 |
+| `README.md` / `README.en.md` 当前版本 | PolyForm Noncommercial 1.0.0 | closure 独立重写；上游原始 README 仍按 MIT |
 | closure 新增文件（相对 `f7b1a70`） | PolyForm Noncommercial 1.0.0（[LICENSE-CLOSURE](LICENSE-CLOSURE)） | 以文件头 SPDX 标识为准 |
 | 游戏素材与数据 | 鹰角网络版权所有 | 见第 6 节与 [NOTICE](NOTICE) |
 
-**判定规则**：closure 新增的代码、文档与模板适用 PolyForm Noncommercial 1.0.0；新增文件应带 `SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0`，漏带标识的新增文件仍按新增文件处理。继承自上游的文件及修改适用 MIT。`LICENSE-CLOSURE` 是许可正文，`CLOSURE-VERSION` 是纯版本号数据，两者不按文件头规则判定。纯数据文件按 [NOTICE](NOTICE) 处理。本说明不是许可合同，不改变许可条款。
+**判定规则**：closure 新增的代码、文档与模板适用 PolyForm Noncommercial 1.0.0；新增文件应带 `SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0`，漏带标识的新增文件仍按新增文件处理。继承自上游的文件及修改适用 MIT；`README.md` / `README.en.md` 当前版本为 closure 独立重写文档，适用 PolyForm，上游原始 README 仍按 MIT。`LICENSE-CLOSURE` 是许可正文，`CLOSURE-VERSION` 是纯版本号数据，两者不按文件头规则判定。纯数据文件按 [NOTICE](NOTICE) 处理。本说明不是许可合同，不改变许可条款。
 
 ### 2.2 PolyForm Noncommercial 1.0.0 的要点
 
 - 允许任何**非商业目的**，包括个人学习、研究、实验、测试、私人娱乐和业余项目；
 - 不允许带有预期商业应用的使用；
-- 没有 Change Date，不会自动转为其他许可证；
 - 本许可不是 OSI 认证的开源许可证，属于 source-available；
 - MIT 上游部分不受本许可限制，仍按 MIT 使用。
 
@@ -145,8 +146,8 @@ AI 助手是可选功能。启用后，您输入的提示、必要的排班/干�
 
 Courtesy summary only; the Chinese text is authoritative.
 
-- Unofficial personal fork of Arknights Mower (upstream `f7b1a70` / v4.1.6-alpha.15), closure v0.1.0 (planned tag `closure-v0.1.0`); no affiliation with Hypergryph, Yostar, ArkMowers, or their maintainers.
-- Upstream files and modifications stay MIT; closure-added files use PolyForm Noncommercial 1.0.0 per SPDX headers. The license permits noncommercial purposes only. No commercial license is offered or accepted; commercial use is not permitted. PolyForm is source-available, not an OSI-approved open source license. There is no Change Date.
+- Unofficial personal fork of Arknights® Mower (upstream `f7b1a70` / v4.1.6-alpha.15), closure v0.1.0 (planned tag `closure-v0.1.0`); no affiliation with Hypergryph, Yostar, ArkMowers, or their maintainers.
+- Upstream files and modifications stay MIT; closure-added files use PolyForm Noncommercial 1.0.0 per SPDX headers. The license permits noncommercial purposes only. No commercial license is offered or accepted; commercial use is not permitted. PolyForm is source-available, not an OSI-approved open source license.
 - The project is a simulation, testing, and scheduling research project built around arknights-mower. It does not provide client modification, memory reading, network interception, or real-game integration tutorials. If you use the project or its output in a real game environment, you are responsible for confirming and complying with the game's terms; account, device, and data risks are yours. Provided "AS IS" without warranties; liability limited as far as law allows.
 - No plans, operator data, logs, accounts, passwords, phone numbers, or device IDs are uploaded to developer servers, and IPs are not actively collected or stored; GitHub and third-party services see your IP when contacted. The optional AI assistant sends prompts, necessary context, and your API key to your chosen model service under that provider's terms and privacy policy. When you explicitly request feedback submission, the assistant sends the content you confirm and necessary logs/screenshots to the developer group's email via `submit_issue`; it does not use a developer-operated server. Skland credentials (token/credential) stay in plaintext local config (e.g., `config/conf.yml`); never share them.
 - The consent gate is shown before first use of closure features; acceptance records version, content hash, time, and language. Major changes require re-confirmation.

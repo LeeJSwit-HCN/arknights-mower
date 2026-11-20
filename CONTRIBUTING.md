@@ -3,11 +3,15 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
 # 贡献指南
 
+> English: [CONTRIBUTING.en.md](CONTRIBUTING.en.md)
+
 ## 1. 先签 CLA
 
 任何代码 PR 必须先接受 [CLA.md](CLA.md)（[English](CLA.en.md)）。未签 CLA 的 PR 不进入合并审查。
 
 维护者需在仓库配置 `CLA_SIGNATURES_TOKEN`（contents: write）；该说明属于仓库配置，不写入 CLA 正文。
+
+安全漏洞不要提交公开 Issue，请按 [`SECURITY.md`](SECURITY.md) 私密报告。
 
 CLA 只覆盖：
 

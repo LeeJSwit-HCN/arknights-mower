@@ -1,0 +1,89 @@
+# SPDX-FileCopyrightText: 2026 LeeJSwit
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+
+name: Bug report / Bug 反馈
+description: 报告 closure 0.1.x 的可复现问题 / Report a reproducible issue in closure 0.1.x
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **不要在这里提交安全漏洞。 / Do not report security vulnerabilities here.**
+        安全问题请使用私密漏洞报告。 / Report security issues through private vulnerability reporting.
+
+        **不要提交森空岛 token、API Key、账号密码、真实 UID、手机号或未脱敏日志。 /**
+        **Do not submit Skland tokens, API keys, account passwords, real UIDs, phone numbers, or unredacted logs.**  
+        提交前请删除所有包含凭据和个人信息的截图、日志和配置。 /
+        Before submitting, remove all screenshots, logs, and configuration containing credentials or personal information.
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私确认 / Privacy confirmation
+      description: 这是必选项；未确认的 Issue 可能被直接关闭。 / Required; unconfirmed issues may be closed.
+      options:
+        - label: 我已经删除了所有包含森空岛凭据、API Key 和游戏账号隐私的日志、截图和配置。 / I have removed all logs, screenshots, and configuration containing Skland credentials, API keys, or game-account privacy.
+          required: true
+        - label: 我理解这是个人业余项目，不提供 24 小时响应或 SLA。 / I understand this is a personal hobby project with no 24-hour response or SLA.
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本 / Version
+      description: Closure 版本和上游基线，例如 0.1.0 / 4.1.6-alpha.15。 / Closure version and upstream baseline, for example 0.1.0 / 4.1.6-alpha.15.
+      placeholder: "0.1.0 / 4.1.6-alpha.15"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 影响范围 / Area
+      options:
+        - L1 仿真层 / L1 simulation
+        - L2 执行层 / L2 execution
+        - 前端 / 用户许可门禁 / Frontend / user consent gate
+        - 打包 / 安装 / Packaging / installation
+        - 文档 / Documentation
+        - 其他 / Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述 / Description
+      description: 实际发生了什么，期望发生什么。 / What happened, and what did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤 / Reproduction steps
+      description: 尽量使用最小、可重复的步骤；不要使用真实账号凭据。 / Use minimal, repeatable steps; do not use real account credentials.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 脱敏日志 / 截图 / Redacted logs / screenshots
+      description: 只贴与问题有关的最小片段；不要贴完整配置或账号信息。 / Include only the minimum relevant excerpt; do not post full configuration or account information.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境 / Environment
+      description: 操作系统、Python/Node 版本、模拟器/设备类型（不需要真实设备 ID）。 / OS, Python/Node version, emulator/device type (no real device ID needed).
+    validations:
+      required: false

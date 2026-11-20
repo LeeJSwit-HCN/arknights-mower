@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 LeeJSwit
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+
+blank_issues_enabled: false
+contact_links:
+  - name: 私密报告安全漏洞 / Report a security vulnerability privately
+    url: https://github.com/LeeJSwit-HCN/arknights-mower/security/advisories/new
+    about: 不要用公开 Issue 报告安全漏洞、凭据泄露或账号隐私。 / Do not report security vulnerabilities, credential leaks, or account privacy issues in a public issue.
+  - name: 先阅读安全政策 / Read the security policy first
+    url: https://github.com/LeeJSwit-HCN/arknights-mower/blob/closure/SECURITY.md
+    about: 游戏封号、木马、明文 token、第三方服务问题不属于本项目安全漏洞。 / Game bans, malware, plaintext tokens, and third-party services are not security vulnerabilities in this project.

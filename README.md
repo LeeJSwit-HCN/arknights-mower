@@ -1,10 +1,15 @@
+SPDX-FileCopyrightText: 2026 LeeJSwit
+SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+
 # arknights-mower（closure 分支）
 
-个人维护的 [Arknights Mower](https://github.com/ArkMowers/arknights-mower) fork，基于上游 `alpha`
+个人维护的 [Arknights® Mower](https://github.com/ArkMowers/arknights-mower) fork，基于上游 `alpha`
 快照 `f7b1a70`（v4.1.6-alpha.15），只维护 `closure` 分支。非官方版本，不代表上游维护者立场，
 不提供官方支持。
 
 > 本次为 docs-only 基线提交：仅含文档与许可证。L1/L2 代码与可运行包随 closure v0.1.0 代码发行提供。
+>
+> English: [README.en.md](README.en.md)
 
 ## 与上游的关系
 
@@ -17,7 +22,7 @@
 本项目是个人学习研究项目，研究开源项目 arknights-mower 在虚拟设备/仿真环境下的自动化测试与排班算法。
 
 - 不修改游戏客户端、不读取游戏内存、不拦截网络通信、不修改游戏文件；
-- 这些技术特征只是实现说明，不构成鹰角网络的授权；
+- 这些技术特征只是实现说明，不构成鹰角网络®的授权；
 - 不授权、不提供将本项目接入真实游戏环境的教程或支持；
 - 禁止将本项目用于违反游戏服务条款、商业代练、托管或其他商业用途；
 - 与鹰角网络、悠星及 ArkMowers 无隶属关系。
@@ -28,6 +33,7 @@
 - 继承自上游的文件及对它们的修改为 MIT；本 fork 新增的文件为 PolyForm Noncommercial 1.0.0；**不提供商业许可，也不接受商业许可申请**。
 - 自动化操作可能违反游戏服务条款并导致账号处罚；账号、设备与数据风险由使用者自行承担。
 - 完整条款、数据与隐私说明、确认流程见 [`USER-NOTICE.md`](USER-NOTICE.md)。
+- 安全漏洞报告方式与“什么不是安全漏洞”见 [`SECURITY.md`](SECURITY.md)。
 
 ## 内容范围
 
@@ -57,18 +63,18 @@ closure 新增文档不提供面向用户的安装、配置或真实游戏接入
 
 - 继承自上游的文件及对它们的修改：MIT（`LICENSE`）；本 fork 新增的文件：PolyForm Noncommercial 1.0.0
   （`LICENSE-CLOSURE`），范围见 `NOTICE`。
+- `README.md` / `README.en.md` 当前版本为 closure 独立重写文档，适用 PolyForm；上游 f7b1a70 的原始 README 仍按 MIT。
 - 新增 closure 文件是否适用 PolyForm，以文件头是否带 `SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0` 为准；漏带标识的新增文件仍按新增文件处理。`LICENSE-CLOSURE` 是许可正文，`CLOSURE-VERSION` 是纯版本号数据，两者不按此规则判定。
 - 允许任何非商业目的（范围见 `LICENSE-CLOSURE`）；**不提供商业许可，也不接受商业许可申请**，代练、代肝、托管、
   付费接口等商业使用不在授权范围内。
-- PolyForm Noncommercial 1.0.0 没有 Change Date；它不是 OSI 认证的开源许可证，属于 source-available。
 - PolyForm 不限制 MIT 上游文件的商业使用。
-- Release 包为 MIT + PolyForm Noncommercial 1.0.0 混合许可分发：上游部分仍按 MIT，closure 新增部分按 PolyForm；分发时需附带 `LICENSE`、`LICENSE-CLOSURE`、`NOTICE`、`USER-NOTICE.md`。
+- Release 包应为 MIT + PolyForm Noncommercial 1.0.0 混合许可分发：上游部分仍按 MIT，closure 新增部分按 PolyForm；分发时需附带 `LICENSE`、`LICENSE-CLOSURE`、`NOTICE`、`USER-NOTICE.md`。
 - 使用前请阅读 [`USER-NOTICE.md`](USER-NOTICE.md)（使用须知与风险确认书）。
 
 ## 免责声明
 
 - 本项目为个人学习研究项目，非商业；不提供、也不接受商业许可申请；不参与、不授权任何代练、代肝、托管、付费服务或付费合作。
 - 开发者不提供任何付费服务，权利人提出异议时停止分发。
-- 游戏《明日方舟》及其素材版权归鹰角网络所有；使用本工具可能违反游戏服务条款，
+- 游戏《明日方舟®》及其素材版权归鹰角网络所有；使用本工具可能违反游戏服务条款，
   账号与数据风险由使用者自行承担。
 - 不保证稳定性与兼容性，不对使用后果承担责任。
