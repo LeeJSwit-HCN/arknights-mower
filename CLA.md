@@ -3,8 +3,9 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
 # Closure 贡献者许可协议（CLA）
 
-> 版本：1.0  
+> 版本：1.1  
 > 适用：向 `closure` 分支提交的 L1 / L2 / L3 代码贡献。  
+> English: [CLA.en.md](CLA.en.md)  
 > 本协议不构成法律意见。贡献者如对本协议项下的权利义务有疑问，建议在签署前咨询执业律师。
 
 ## 1. 范围
@@ -69,7 +70,8 @@ ui/package.json、ui/package-lock.json、ui/.gitignore、ui/src/pages/Plan.vue
 - 贡献不包含未经授权的第三方代码、游戏素材、账号数据、密钥或个人信息；
 - 贡献不包含明知会侵犯他人权利的代码；
 - 贡献不用于代练、代肝、托管、付费接口等商业服务；
-- 贡献符合 `CONTRIBUTING.md` 的范围和许可要求。
+- 贡献符合 `CONTRIBUTING.md` 的范围和许可要求；
+- 贡献者声明，其提交贡献的行为未违反其与所属雇主或机构的任何协议；若该贡献属于职务发明或职务行为，贡献者保证已获得其雇主的明确授权。
 
 ## 6. 许可文件与文件头
 
@@ -91,7 +93,7 @@ ui/package.json、ui/package-lock.json、ui/.gitignore、ui/src/pages/Plan.vue
 贡献者通过以下方式接受本 CLA：
 
 - 在 Pull Request 中按 CLA Assistant 提示回复同意；或
-- 在 PR 描述中明确写明“我接受 CLA.md 1.0”。
+- 在 PR 描述中明确写明“我接受 CLA.md 1.1”。
 
 未完成接受的 PR 不进入合并审查。
 
@@ -102,8 +104,11 @@ ui/package.json、ui/package-lock.json、ui/.gitignore、ui/src/pages/Plan.vue
 - 拒绝不符合范围、许可或项目定位的贡献；
 - 要求贡献者补充权利证明；
 - 移除违反本 CLA 或项目规则的贡献；
-- 在不违反已发布许可证的前提下调整项目许可证。
+- 在不违反已发布许可证的前提下调整项目许可证；
+- 若贡献者违反本协议、项目许可或 `USER-NOTICE.md` 中的限制，维护者有权在适用法律允许的范围内终止本协议项下对该贡献者的授权，并停止分发其贡献的代码。
 
-## 9. 免责声明
+## 9. 免责声明与适用法律
 
 本 CLA 是贡献者与维护者之间的许可安排，不改变上游 MIT 代码的许可，也不构成对游戏厂商、平台或第三方的任何承诺。
+
+本协议适用中华人民共和国法律（不含港澳台地区法律）。因本协议引起的或与本协议有关的任何争议，双方应友好协商解决。

@@ -5,7 +5,7 @@ SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 
 ## 1. 先签 CLA
 
-任何代码 PR 必须先接受 [CLA.md](CLA.md)。未签 CLA 的 PR 不进入合并审查。
+任何代码 PR 必须先接受 [CLA.md](CLA.md)（[English](CLA.en.md)）。未签 CLA 的 PR 不进入合并审查。
 
 维护者需在仓库配置 `CLA_SIGNATURES_TOKEN`（contents: write）；该说明属于仓库配置，不写入 CLA 正文。
 

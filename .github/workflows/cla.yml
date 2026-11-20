@@ -25,7 +25,7 @@ jobs:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_SIGNATURES_TOKEN }}
         with:
           path-to-document: CLA.md
-          path-to-signatures: signatures/version1/cla.json
+          path-to-signatures: signatures/version1.1/cla.json
           branch: cla-signatures
           remote-organization-name: LeeJSwit-HCN
           remote-repository-name: arknights-mower
