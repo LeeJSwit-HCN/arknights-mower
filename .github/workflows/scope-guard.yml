@@ -35,7 +35,7 @@ jobs:
           blocked=0
           while IFS= read -r file; do
             case "$file" in
-              arknights_mower/*|server.py|webview_ui.py|webui_zip.spec|ui/package.json|ui/package-lock.json|ui/.gitignore|ui/src/pages/Plan.vue)
+              arknights_mower/*|server.py|webview_ui.py|webui_zip.spec|ui/package.json|ui/package-lock.json|ui/.gitignore|ui/src/pages/Plan.vue|.github/workflows/*)
                 echo "::error file=$file::closure 不接受对 mower 核心或上游跟踪文件的修改，请提交到上游。"
                 blocked=1
                 ;;
