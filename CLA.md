@@ -107,5 +107,3 @@ ui/package.json、ui/package-lock.json、ui/.gitignore、ui/src/pages/Plan.vue
 ## 9. 免责声明
 
 本 CLA 是贡献者与维护者之间的许可安排，不改变上游 MIT 代码的许可，也不构成对游戏厂商、平台或第三方的任何承诺。
-
-本文件不构成法律意见；正式启用前应咨询律师。
