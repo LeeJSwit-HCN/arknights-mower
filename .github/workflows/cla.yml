@@ -1,0 +1,32 @@
+name: CLA
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  cla:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CLA Assistant
+        uses: contributor-assistant/github-action@v2.6.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_SIGNATURES_TOKEN }}
+        with:
+          path-to-document: CLA.md
+          path-to-signatures: signatures/version1/cla.json
+          branch: cla-signatures
+          remote-organization-name: LeeJSwit-HCN
+          remote-repository-name: arknights-mower
+          allowlist: LeeJSwit-HCN,dependabot[bot]
+          custom-notsigned-prcomment: |
+            感谢提交。请先阅读 [CLA.md](CLA.md)，并按下方提示回复同意。
+            未签 CLA 的 PR 不进入合并审查。
+          custom-pr-sign-comment: I have read the CLA Document and I hereby sign the CLA.
+          custom-allsigned-prcomment: 所有贡献者已签署 CLA。

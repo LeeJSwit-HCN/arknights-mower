@@ -1,0 +1,59 @@
+name: scope guard
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  scope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow maintainer
+        if: github.event.pull_request.user.login == 'LeeJSwit-HCN'
+        run: echo "maintainer PR; scope check skipped"
+
+      - name: Checkout base
+        if: github.event.pull_request.user.login != 'LeeJSwit-HCN'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+
+      - name: Check changed paths
+        if: github.event.pull_request.user.login != 'LeeJSwit-HCN'
+        shell: bash
+        run: |
+          git fetch --no-tags origin "refs/pull/${{ github.event.pull_request.number }}/head"
+          git diff --name-only "${{ github.event.pull_request.base.sha }}" FETCH_HEAD > /tmp/changed.txt
+          echo "Changed files:"
+          cat /tmp/changed.txt
+
+          blocked=0
+          while IFS= read -r file; do
+            case "$file" in
+              arknights_mower/*|server.py|webview_ui.py|webui_zip.spec|ui/package.json|ui/package-lock.json|ui/.gitignore|ui/src/pages/Plan.vue)
+                echo "::error file=$file::closure 不接受对 mower 核心或上游跟踪文件的修改，请提交到上游。"
+                blocked=1
+                ;;
+            esac
+          done < /tmp/changed.txt
+
+          if [ "$blocked" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Comment blocked PR
+        if: failure() && github.event.pull_request.user.login != 'LeeJSwit-HCN'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '此 PR 修改了 mower 核心或上游跟踪文件，closure 不接受此类贡献。请将相关修改提交到上游项目。'
+            })
